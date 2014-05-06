@@ -1,0 +1,28 @@
+<h1>Asset Pipeline Generator</h1> <a class="pull right" href="/logout"> &lt;----Logout</a>
+<hr />
+<form method="post" action="/upload" enctype="multipart/form-data"  >
+	<label>Name:</label>
+	<input type="text" id="title" name="title"/> 
+	<label>File:</label>
+	<input type="file" id="body" name="body" />
+        <input type="submit">
+</form>
+
+<h1>Assets Visualizer</h1>
+<hr />
+<table>
+  <thead>
+     <tr>
+       <th width="90%">File Name</th>
+       <th width:="10%" >Delete</th>
+     </tr>
+   </thead>
+   <tbody>
+    <% @post.each do |x| %>
+     <tr>
+	     <td><a href="/uploads/<%= x.body %>">   <%= x.title %> </a> </td>
+      <td><a href="delete/<%= x.id %>" class="button" >Delete</a></td>
+     </tr>	
+<% end %>
+   </tbody>	
+</table>

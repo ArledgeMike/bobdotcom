@@ -1,0 +1,70 @@
+body, html{
+  background: black;
+  color: green;
+  font-family: sans-serif;
+  padding:20px;
+  }
+  label{
+    color:green;
+  }
+ input[type="text"], input[type="password"], input[type="submit"]{
+   background: black;
+   border: thin solid green;
+   color:green; 
+  }
+  input[type="text"]:focus, input[type="password"]:focus{
+	  background: black;
+          border: thin solid green;
+  }
+input[type="submit"]{
+margin-top:20px;
+width:100px;
+height:50px;
+}
+  h1, p{
+	  display:inline-block;
+	  color:green;
+  }
+  hr{
+	  border: thin solid green;
+  }
+  a{
+    color:green;
+  } 
+  a:hover{
+	  color:green;
+  }
+  .main_container{
+	  margin:auto;
+	  width:640px;
+  }
+  .main_container img{
+	  margin:20px 0px;
+  }
+  table{
+	  width:100%;
+	  border:thin solid green;
+	  background:black;
+  }
+  table thead{
+	  background:black;
+  }
+  table thead tr th{
+	  color:green;
+  }
+  table tbody tr{
+	  background:black;
+  }
+  table tbody tr td{
+	  color:green;
+  }
+  table tr.even, table tr.alt, table tr:nth-of-type(even){
+    background:black;
+  }
+  .button{
+	  background:green;
+	  color:black;
+  }
+  .button:hover{
+	  background:green;
+  }

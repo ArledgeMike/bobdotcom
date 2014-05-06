@@ -1,0 +1,7 @@
+<h1>Bobdotcom.biz</h1><p> - version 1.0.01.0111</p>
+<hr />
+<div class="main_container">
+<% @post.each do |x| %>
+    <img src="/uploads/<%= x.body %>" />
+    <% end %>
+   </div>

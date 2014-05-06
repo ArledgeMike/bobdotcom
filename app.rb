@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'sinatra/activerecord'
 require 'bcrypt'
+require 'net/sftp'
 require './environments'
 
 class Post < ActiveRecord::Base
@@ -68,12 +69,16 @@ post "/sign-up" do
 end
 
 post "/upload" do
-  @post = Post.create(:title => params[:title], :body => params[:body][:filename])
-  file = params[:body]
-  File.open("public/uploads/" + params[:body][:filename], "wb") do |f|
-    f.write(params[:body][:tempfile].read)
-    redirect "/main"
-  end 
+ post = Post.create(:title => params[:title], :body => params[:body][:filename])
+ file ="#{params[:body][:tempfile].path}"
+
+ connect = Net::SSH.start("thelostideas.com", "mike", :password => "mike")
+  connect.sftp.upload!(file, "/srv/www/codeandpen/codeandpen.com/public_html/uploads/#{params[:body][:filename]}")
+#  File.open("public/uploads/" + params[:body][:filename], "wb") do |f|
+ #   f.write(params[:body][:tempfile].read)
+ #  redirect "/main"
+#  end
+  redirect "/main" 
 end
 
 get "/uploads/:name" do 

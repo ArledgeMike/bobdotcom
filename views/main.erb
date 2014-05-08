@@ -22,7 +22,7 @@
    <tbody>
     <% @post.each do |x| %>
      <tr>
-	     <td><a href="/uploads/<%= x.body %>">   <%= x.title %> </a> </td>
+      <td><a href="/uploads/<%= x.body %>">   <%=h x.title %> </a> </td>
       <td><a href="delete/<%= x.id %>" class="button" >Delete</a></td>
      </tr>	
 <% end %>

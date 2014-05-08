@@ -25,6 +25,10 @@ helpers do
   def username
     return session[:username]
   end
+  
+  def h(text)
+    Rack::Utils.escape_html(text)
+  end
 
 end
 

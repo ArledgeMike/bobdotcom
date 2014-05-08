@@ -2,6 +2,6 @@
 <hr />
 <div class="main_container">
 <% @post.each do |x| %>
-    <img src="/uploads/<%= x.body %>" />
+    <img src="/uploads/<%=h x.body %>" />
     <% end %>
    </div>

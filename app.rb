@@ -34,16 +34,16 @@ helpers do
 end
 
 get "/" do
- # if login?
   login?
   @post = Post.all
+  @page_id = "main"
+  @page_class ="home"
   erb :index
- # else
-  #  redirect "/login"
-#  end
 end
 
 get "/login" do
+  @page_id = "admin"
+  @page_class ="login"
   erb :login
 end
 
@@ -58,10 +58,14 @@ end
 get "/main" do 
   login?
   @post = Post.all
+  @page_id = "admin"
+  @page_class ="main"
   erb :main
 end
 
 get "/sign-up" do
+  @page_id = "admin"
+  @page_class ="signup"
   erb :signup
 end
 

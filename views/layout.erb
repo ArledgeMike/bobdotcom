@@ -1,11 +1,14 @@
-<html>
-<head>
+<html id="<%= @page_id %>" class="<%= @page_class %>">
+<head  >
   <title>BOBDOTCOM.BIZ</title>
+  <meta name="viewport" content="width=device-width" initial-scale="0" >
   <link href="/styles/foundation.min.css" rel="stylesheet">
   <link href="/styles/main.css" rel="stylesheet" >
 </head>
 <body>
-<%= yield %>
+<div id="full_container">	
+  <%= yield %>
+</div>
 <script src="/js/jquery-1.11.1.min.js" type="text/javascript"></script>
 <script src="/js/foundation.min.js" text="text/javascript"></script>
 <script src="/js/main.js" text="text/javascript"></script>

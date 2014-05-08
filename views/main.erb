@@ -22,7 +22,11 @@
    <tbody>
     <% @post.each do |x| %>
      <tr>
+<<<<<<< HEAD
       <td><a href="/uploads/<%= x.body %>">   <%=h x.title %> </a> </td>
+=======
+	     <td><a target="_blank" href="http://www.codeandpen.com/uploads/<%= x.body %>">   <%= x.title %> </a> </td>
+>>>>>>> 17bbdd9a5ba4fd61da35eb26abbca4df8274bc0b
       <td><a href="delete/<%= x.id %>" class="button" >Delete</a></td>
      </tr>	
 <% end %>

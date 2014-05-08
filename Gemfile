@@ -7,6 +7,7 @@ gem 'sinatra-activerecord'
 gem 'sinatra-flash'
 gem 'sinatra-redirect-with-flash'
 gem 'bcrypt'
+gem 'net-sftp'
 
 group :development do
  gem 'sqlite3'

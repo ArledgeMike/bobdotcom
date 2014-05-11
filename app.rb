@@ -36,7 +36,7 @@ end
 get "/" do
   login?
   @post = Post.all
-  @user = User.all
+ # @user =  User.all
   @page_id = "main"
   @page_class ="home"
   erb :index

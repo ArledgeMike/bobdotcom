@@ -30,7 +30,7 @@
       <% @post.each do |x| %>
         <tr>
           <td>
-            <a href="/uploads/<%= x.body %>"><%= x.title %></a>
+            <a href="http://www.codeandpen.com/uploads/<%= x.body %>"><%= x.title %></a>
           </td>
 	  <%if (session[:username] == "arledgemike") %>
 	    <td> 

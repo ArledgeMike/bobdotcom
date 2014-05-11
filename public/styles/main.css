@@ -13,12 +13,12 @@ html#admin, html#edit{
 #admin label, #edit label{
   color:green;
 }
-#admin input[type="text"], #admin input[type="password"], #admin input[type="submit"], #edit input[type="text"], #edit input[type="submit"]{
+#admin input[type="text"],#admin select,  #admin input[type="password"], #admin input[type="submit"]{
   background: black;
   border: thin solid green;
   color:green; 
 }
-#admin input[type="text"]:focus, #admin input[type="password"]:focus, #edit input[type="text"]:focus{
+#admin input[type="text"]:focus, #admin input[type="password"]:focus{
   background: black;
   border: thin solid green;
 }
@@ -62,6 +62,12 @@ table thead{
 }
 table thead tr th{
   color:green;
+}
+table .right_column{
+	text-align:right;
+}
+ .last_column{
+        margin-right:10px;
 }
 table tbody tr{
   background:black;

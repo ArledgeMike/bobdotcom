@@ -19,10 +19,10 @@
     <tr>
       <th width="50%">File Name</th>
       <% if (session[:username] == "arledgemike") %>
-        <th width ="25%">Edit</th>
-        <th width ="25%">Delete</th>
+        <th class="right_column" width ="25%">Edit</th>
+        <th class="right_column last_column " width ="25%">Delete</th>
       <% else %>
-        <th width:="50%" >Delete</th>
+        <th width:="50%" class="right_column last_column " >Delete</th>
       <% end %>
     </tr>
     </thead>
@@ -33,14 +33,14 @@
             <a href="http://www.codeandpen.com/uploads/<%= x.body %>"><%= x.title %></a>
           </td>
 	  <%if (session[:username] == "arledgemike") %>
-	    <td> 
+	    <td class="right_column" > 
 	      <a href="/edit/<%= x.id %>" class="button" >Edit</a>
             </td>
-            <td>
+            <td class="right_column" >
 	      <a href="/delete/<%= x.id %>" class="button" >Delete</a>
             </td>
           <% else %>
-	    <td>
+	    <td class="right_column" >
               <a href="/delete/<%= x.id %>" class="button" >Delete</a>
             </td>
           <% end %>
@@ -48,4 +48,16 @@
        <% end %>
    </tbody>	
 </table>
-
+<table>
+	<thead>
+		<tr><th>Name</th><th class="right_column" >Edit</th></tr>
+	</thead>
+	<tbody>
+		<% @user.each do |x| %>
+			<tr>
+                    <td><%= x.first_name + x.last_name %></td>
+		    <td class="right_column" ><a href="/user/edit/<%= x.id %>" class="button">Edit</a></td>
+			</tr>
+<% end %>
+</tbody>
+</table>

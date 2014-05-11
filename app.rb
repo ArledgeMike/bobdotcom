@@ -94,6 +94,20 @@ get "/uploads/:name" do
   erb :images
 end
 
+get "/edit/:id" do
+  @page_id = "edit"
+  @page_class = "post"
+  @post = Post.find params[:id]
+  erb :edit
+end
+
+patch "/edit" do
+  @post = Post.find params[:id]
+  @post[:title] = params[:title]
+  @post.save
+  redirect "/main"
+end
+
 get "/delete/:id" do
   Post.find(params[:id]).delete
   redirect "/main"

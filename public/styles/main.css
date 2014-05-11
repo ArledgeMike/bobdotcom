@@ -2,23 +2,23 @@ body, html{
   background:transparent;
   font-family: sans-serif;
 }
-html#admin{
+html#admin, html#edit{
 	background:black;
 }
-#admin #full_container{
+#admin #full_container, #edit #full_container{
        padding-top:20px;
 	width:75%;
 	margin:auto;
 }
-#admin label{
+#admin label, #edit label{
   color:green;
 }
-#admin input[type="text"], #admin input[type="password"], #admin input[type="submit"]{
+#admin input[type="text"], #admin input[type="password"], #admin input[type="submit"], #edit input[type="text"], #edit input[type="submit"]{
   background: black;
   border: thin solid green;
   color:green; 
 }
-#admin input[type="text"]:focus, #admin input[type="password"]:focus{
+#admin input[type="text"]:focus, #admin input[type="password"]:focus, #edit input[type="text"]:focus{
   background: black;
   border: thin solid green;
 }
@@ -43,11 +43,13 @@ html#admin{
 .main_container{
   padding:20px;
   margin:auto;
-  width:640px;
+  width:75%;
+  max-width:640px;
+  white-space:pre-wrap;
 }
 .main_container img{
   margin:20px 0px;
-  width:100%;
+  width:auto;
   height:auto;
 }
 table{

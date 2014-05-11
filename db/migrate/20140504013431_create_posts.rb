@@ -11,10 +11,12 @@ class CreatePosts < ActiveRecord::Migration
       u.string :username
       u.string :first_name
       u.string :last_name
+      u.string :user_type
       u.string :password_salt
       u.string :password_hash
       u.timestamps
     end
+  
   end
 
   def self.down

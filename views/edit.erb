@@ -1,0 +1,9 @@
+<form action="/edit" method="post">
+	<input name="_method" value="patch" type="hidden"/>
+	<input name="id" id="id" value="<%= @post.id %>" type="hidden" />
+	<label>Post Title:</label>
+	<input type="text" id="title" name="title" value="<%= @post.title %>" />
+	<input type="submit" class="button" />
+</form>
+
+<img src="http://codeandpen.com/uploads/<%=@post.body%>" />

@@ -1,31 +1,50 @@
-
 <h1>Asset Pipeline Generator</h1> 
-<a class="pull right" href="/"> &lt;----Main Site</a>
+
 <a class="pull right" href="/logout"> &lt;----Logout</a>
+<a class="pull right" href="/"> &lt;----Main Site</a>
+
 <hr />
 <form method="post" action="/upload" enctype="multipart/form-data"  >
-	<label>Name:</label>
-	<input type="text" id="title" name="title"/> 
-	<label>File:</label>
-	<input type="file" id="body" name="body" />
-        <input type="submit">
+  <label>Name:</label>
+  <input type="text" id="title" name="title"/> 
+  <label>File:</label>
+  <input type="file" id="body" name="body" />
+  <input type="submit">
 </form>
 
 <h1>Assets Visualizer</h1>
 <hr />
 <table>
   <thead>
-     <tr>
-       <th width="90%">File Name</th>
-       <th width:="10%" >Delete</th>
-     </tr>
-   </thead>
-   <tbody>
-    <% @post.each do |x| %>
-     <tr>
-      <td><a target="_blank" href="http://www.codeandpen.com/uploads/<%= x.body %>"><%=h x.title %></a></td>
-      <td><a href="delete/<%= x.id %>" class="button" >Delete</a></td>
-     </tr>	
-<% end %>
+    <tr>
+      <th width="50%">File Name</th>
+      <% if (session[:username] == "arledgemike") %>
+        <th width ="25%">Edit</th>
+        <th width ="25%">Delete</th>
+      <% else %>
+        <th width:="50%" >Delete</th>
+      <% end %>
+    </tr>
+    </thead>
+    <tbody>
+      <% @post.each do |x| %>
+        <tr>
+          <td>
+            <a href="/uploads/<%= x.body %>"><%= x.title %></a>
+          </td>
+	  <%if (session[:username] == "arledgemike") %>
+	    <td> 
+	      <a href="/edit/<%= x.id %>" class="button" >Edit</a>
+            </td>
+            <td>
+	      <a href="/delete/<%= x.id %>" class="button" >Delete</a>
+            </td>
+          <% else %>
+	    <td>
+              <a href="/delete/<%= x.id %>" class="button" >Delete</a>
+            </td>
+          <% end %>
+        </tr>	
+       <% end %>
    </tbody>	
 </table>

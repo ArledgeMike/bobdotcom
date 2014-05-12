@@ -33,7 +33,7 @@ helpers do
 
   def is_selected(current_type, user_type)
   if current_type == user_type 
-    puts "selected"
+    %q{selected}
   end
   end
 
@@ -57,11 +57,12 @@ post "/login" do
   @user = User.find_by(username: params[:user])
   if @user and @user.password_hash == BCrypt::Engine.hash_secret(params[:pass], @user.password_salt)
     session[:username] = @user.username
+    session[:user_type] = @user.user_type || "default"
     redirect "/main"
   end
 end
 
-get "/main" do 
+get "/main" do
   login?
   @post = Post.all
   @user =  User.all
@@ -142,5 +143,6 @@ end
 
 get "/logout" do
   session[:username] = nil
+  session[:user_type] = nil
   redirect "/login"
 end

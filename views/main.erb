@@ -2,8 +2,9 @@
 
 <a class="pull right" href="/logout"> &lt;----Logout</a>
 <a class="pull right" href="/"> &lt;----Main Site</a>
-
+<p><%= session[:user_type] %></p>
 <hr />
+
 <form method="post" action="/upload" enctype="multipart/form-data"  >
   <label>Name:</label>
   <input type="text" id="title" name="title"/> 
@@ -14,50 +15,23 @@
 
 <h1>Assets Visualizer</h1>
 <hr />
-<table>
-  <thead>
-    <tr>
-      <th width="50%">File Name</th>
-      <% if (session[:username] == "arledgemike") %>
-        <th class="right_column" width ="25%">Edit</th>
-        <th class="right_column last_column " width ="25%">Delete</th>
-      <% else %>
-        <th width:="50%" class="right_column last_column " >Delete</th>
-      <% end %>
-    </tr>
-    </thead>
-    <tbody>
-      <% @post.each do |x| %>
-        <tr>
-          <td>
-            <a href="http://www.codeandpen.com/uploads/<%= x.body %>"><%= x.title %></a>
-          </td>
-	  <%if (session[:username] == "arledgemike") %>
-	    <td class="right_column" > 
-	      <a href="/edit/<%= x.id %>" class="button" >Edit</a>
-            </td>
-            <td class="right_column" >
-	      <a href="/delete/<%= x.id %>" class="button" >Delete</a>
-            </td>
-          <% else %>
-	    <td class="right_column" >
-              <a href="/delete/<%= x.id %>" class="button" >Delete</a>
-            </td>
-          <% end %>
-        </tr>	
-       <% end %>
-   </tbody>	
-</table>
-<table>
-	<thead>
-		<tr><th>Name</th><th class="right_column" >Edit</th></tr>
-	</thead>
-	<tbody>
-		<% @user.each do |x| %>
-			<tr>
-                    <td><%= x.first_name + x.last_name %></td>
-		    <td class="right_column" ><a href="/user/edit/<%= x.id %>" class="button">Edit</a></td>
-			</tr>
+
+<% if(session[:user_type] == "copy") %>
+  <%= erb :copy_main %>
 <% end %>
-</tbody>
-</table>
+
+<% if(session[:user_type] == "art") %>
+  <%= erb :art_main %>
+<% end %>
+
+<% if(session[:user_type] == "ceo") %>      
+  <%= erb :ceo_main %>
+<% end %>
+
+<% if(session[:user_type] == "tech") %>
+  <%= erb :ceo_main %>
+<% end %>
+
+<% if(session[:user_type] == "default") %>
+	<p>The boss hasn't verified your employment yet.</p>
+<% end %>

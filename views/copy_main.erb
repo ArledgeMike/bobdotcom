@@ -1,0 +1,21 @@
+<table>
+  <thead>
+    <tr>
+      <th width="50%">File Name</th>
+      <th class="right_column" width ="50%">Edit</th>
+    </tr>
+    </thead>
+    <tbody>
+      <% @post.each do |x| %>
+        <tr>
+          <td>
+            <a href="http://www.codeandpen.com/uploads/<%= x.body %>"><%= x.title %></a>
+          </td>
+	  <td class="right_column" > 
+	    <a href="/edit/<%= x.id %>" class="button" >Edit</a>
+          </td>
+        <% end %>
+      </tr>	
+   </tbody>	
+</table>
+

@@ -129,7 +129,7 @@ get "/user/edit/:id" do
   erb :edit_user
 end
 
-patch "/user/edit" do
+patch "/edit/edit" do
   @user = User.find params[:id] 
     params.each do |x, y|
     if x  != "_method"

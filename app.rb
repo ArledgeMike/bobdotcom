@@ -41,7 +41,7 @@ end
 
 get "/" do
   login?
-  @post = Post.all
+  @post = Post.all.order("created_at DESC")
   @page_id = "main"
   @page_class ="home"
   erb :index
@@ -64,7 +64,7 @@ end
 
 get "/main" do
   login?
-  @post = Post.all
+  @post = Post.all.order("created_at DESC")
   @user =  User.all
   @page_id = "admin"
   @page_class ="main"

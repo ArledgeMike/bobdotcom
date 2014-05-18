@@ -23,10 +23,6 @@ helpers do
     end
   end
 
-  def username
-    return session[:username]
-  end
-  
   def h(text)
     Rack::Utils.escape_html(text)
   end
@@ -41,7 +37,7 @@ end
 
 get "/" do
   login?
-  @post = Post.all
+  @post = Post.order "created_at DESC"
   @page_id = "main"
   @page_class ="home"
   erb :index
@@ -64,7 +60,7 @@ end
 
 get "/main" do
   login?
-  @post = Post.all
+  @post = Post.order "created_at DESC"
   @user =  User.all
   @page_id = "admin"
   @page_class ="main"
@@ -132,11 +128,11 @@ end
 
 patch "/edit/user" do
   @user = User.find params[:id] 
-    params.each do |x, y|
+  params.each do |x, y|
     if x  != "_method"
-	    @user[x] = y
+      @user[x] = y
     end
-    end
+  end
   @user.save
   redirect "/main"
 end

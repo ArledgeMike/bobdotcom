@@ -1,8 +1,8 @@
-<h1>Asset Pipeline Generator</h1> 
+<h1>Asset Pipeline Generator<span>&marker;</span> </h1> 
 
 <a class="pull right" href="/logout"> &lt;----Logout</a>
 <a class="pull right" href="/"> &lt;----Main Site</a>
-<p><%= session[:user_type] %></p>
+<p>Hello <%= session[:username] %>, how can I help you today, bitch.</p>
 <hr />
 
 <form method="post" action="/upload" enctype="multipart/form-data"  >
@@ -14,8 +14,7 @@
 </form>
 
 <h1>Assets Visualizer</h1>
-<hr />
-
+<hr/> 
 <% if(session[:user_type] == "copy") %>
   <%= erb :copy_main %>
 <% end %>
@@ -33,5 +32,5 @@
 <% end %>
 
 <% if(session[:user_type] == "default") %>
-	<p>The boss hasn't verified your employment yet.</p>
+  <p>The boss hasn't verified your employment yet.</p>
 <% end %>

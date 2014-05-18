@@ -37,7 +37,6 @@ end
 
 get "/" do
   login?
-<<<<<<< HEAD
   @post = Post.order "created_at DESC"
   @page_id = "main"
   @page_class ="home"
@@ -61,7 +60,6 @@ end
 
 get "/main" do
   login?
-<<<<<<< HEAD
   @post = Post.order "created_at DESC"
   @user =  User.all
   @page_id = "admin"

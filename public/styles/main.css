@@ -3,12 +3,12 @@ body, html{
   font-family: sans-serif;
 }
 html#admin, html#edit{
-	background:black;
+  background:black;
 }
 #admin #full_container, #edit #full_container{
-       padding-top:20px;
-	width:75%;
-	margin:auto;
+  padding-top:20px;
+  width:75%;
+  margin:auto;
 }
 #admin label, #edit label{
   color:green;
@@ -18,29 +18,32 @@ html#admin, html#edit{
   border: thin solid green;
   color:green; 
 }
+#admin input[type="file"]{
+  color:green;
+}
 #admin input[type="text"]:focus, #admin input[type="password"]:focus{
   background: black;
   border: thin solid green;
 }
 #admin input[type="submit"]{
   margin-top:20px;
-  width:100px;
-  height:50px;
 }
 #admin h1, #admin p{
-  display:inline-block;
   color:green;
   position:relative;
 }
-
-#admin h1 span {
+#admin #messages p span {
   position:relative;
-  top:14px;
-  font-size:70px;
+  top:6px;
+  font-size:30px;
   animation: blink 1s steps(5, start) infinite;
   -webkit-animation: blink 1s steps(5, start) infinite;
+  -moz-animation:blink 1s steps(5, start) infinite;
 }
 @keyframes blink {
+  to { visibility: hidden; }
+}
+@-moz-keyframes blink{
   to { visibility: hidden; }
 }
 @-webkit-keyframes blink {
@@ -55,6 +58,16 @@ html#admin, html#edit{
 } 
 #admin a:hover{
   color:green;
+}
+#admin #full_container form a.cancel.button{
+  background:transparent;
+  border:thin green solid;
+  margin-left:10px;
+  color:green;
+}
+#admin #full_container form a.cancel.button:hover{
+  background:green;
+  color:black;
 }
 .main_container{
   padding:20px;
@@ -80,10 +93,10 @@ table thead tr th{
   color:green;
 }
 table .right_column{
-	text-align:right;
+  text-align:right;
 }
  .last_column{
-        margin-right:10px;
+  margin-right:10px;
 }
 table tbody tr{
   background:black;
@@ -98,16 +111,16 @@ table tr.even, table tr.alt, table tr:nth-of-type(even){
   background:green;
   color:black;
 }
-#admin .button:hover{
+#admin .button:hover, #admin form a.cancel.button:hover{
   background:green;
   color:black;
 }
 #admin.main_container{
-	width:85%
+  width:85%
 }
 #main{
- background: url(/images/bground.jpg) repeat;
- color:#242424;
+  background: url(/images/bground.jpg) repeat;
+  color:#242424;
 }
 #main h1{
   color:#242424;

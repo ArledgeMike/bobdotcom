@@ -1,9 +1,13 @@
 <h1>Quality Logins </h1>
 <hr />
+<% if flash[:login_error] %>
+  <p class="error_message">  <%= flash[:login_error] %></p>
+<% end %>
+
 <form method="post" action="/login" >
-	<label>Username:</label>
-	<input type="text" name="user" id="user" />
-	<label>Password:</label>
-	<input type="password" name="pass" id="pass" />
-	<input type ="submit" />
+  <label>Username:</label>
+  <input type="text" name="user" id="user" />
+  <label>Password:</label>
+  <input type="password" name="pass" id="pass" />
+  <input type ="submit" />
 </form>

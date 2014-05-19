@@ -1,10 +1,14 @@
 require 'sinatra'
 require 'sinatra/activerecord'
+require 'sinatra/flash'
+require 'sinatra/redirect_with_flash'
 require 'bcrypt'
 require 'net/sftp'
 require './environments'
 
 class Post < ActiveRecord::Base
+  validates :title, presence: true
+
 end
 class User < ActiveRecord::Base
 end
@@ -28,9 +32,9 @@ helpers do
   end
 
   def is_selected(current_type, user_type)
-  if current_type == user_type 
-    %q{selected}
-  end
+    if current_type == user_type 
+      %q{selected}
+    end
   end
 
 end
@@ -55,6 +59,8 @@ post "/login" do
     session[:username] = @user.username
     session[:user_type] = @user.user_type || "default"
     redirect "/main"
+  else
+    redirect "/login", :flash => {:login_error => 'try again goon.'}      
   end
 end
 
@@ -81,16 +87,24 @@ post "/sign-up" do
 end
 
 post "/upload" do
-  post = Post.create(:title => params[:title], :body => params[:body][:filename])
-  file ="#{params[:body][:tempfile].path}"
-
-  connect = Net::SSH.start("thelostideas.com", "mike", :password => "mike")
-  connect.sftp.upload!(file, "/srv/www/codeandpen/codeandpen.com/public_html/uploads/#{params[:body][:filename]}")
+  post = Post.new
+  if post.valid?
+    post[:title] = params[:title]
+    post[ :body] = params[:body][:filename]
+    file ="#{params[:body][:tempfile].path}"
+    connect = Net::SSH.start("thelostideas.com", "mike", :password => "mike")
+    connect.sftp.upload!(file, "/srv/www/codeandpen/codeandpen.com/public_html/uploads/#{params[:body][:filename]}")
+    post.save
+    redirect "/main"
+  end
+  @errors = post.errors.messages
+  puts @errors
+  redirect "/main", :flash => @errors
   #File.open("public/uploads/" + params[:body][:filename], "wb") do |f|
   #f.write(params[:body][:tempfile].read)
   #redirect "/main"
   #end
-  redirect "/main" 
+#  redirect "/main" 
 end
 
 get "/uploads/:name" do 

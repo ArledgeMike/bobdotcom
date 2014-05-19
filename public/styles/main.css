@@ -32,6 +32,9 @@ html#admin, html#edit{
   color:green;
   position:relative;
 }
+#admin #messages{
+  clear:right;
+}
 #admin #messages p span {
   position:relative;
   top:6px;
@@ -49,12 +52,12 @@ html#admin, html#edit{
 @-webkit-keyframes blink {
   to { visibility: hidden; }
 }
-
 #admin hr{
   border: thin solid green;
 }
 #admin a{
-  color:green;
+display:inline-block;
+      	color:green;
 } 
 #admin a:hover{
   color:green;

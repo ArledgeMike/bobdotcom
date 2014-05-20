@@ -79,7 +79,12 @@ display:inline-block;
   max-width:640px;
   white-space:pre-wrap;
 }
-
+#main .main_container a{
+	display:block;
+}
+#main .main_container a:hover{
+	border-bottom:none;
+}
 table{
   width:100%;
   border:thin solid green;

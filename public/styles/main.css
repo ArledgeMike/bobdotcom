@@ -79,11 +79,7 @@ display:inline-block;
   max-width:640px;
   white-space:pre-wrap;
 }
-.main_container img{
-  margin:20px 0px;
-  width:auto;
-  height:auto;
-}
+
 table{
   width:100%;
   border:thin solid green;
@@ -127,9 +123,27 @@ table tr.even, table tr.alt, table tr:nth-of-type(even){
 }
 #main h1{
   color:#242424;
+  margin-bottom:15px;
 }
 #main p{
   color:#242424;
+  margin-bottom: 0px;
+  word-break: break-all;
+}
+#main a{
+  color:#242424;
+}
+#main a.twitter{
+  margin-top:10px;
+}
+.main_container img{
+  margin:0px 0px 10px 0px;
+  width:auto;
+  height:auto;
+}
+#main a:hover{
+  color:black;
+  border-bottom:3px dashed black;
 }
 #main hr{
   border:#242424 thin solid;

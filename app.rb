@@ -87,7 +87,6 @@ post "/sign-up" do
 end
 
 post "/upload" do
-	puts "#{params} !!!!!!!!!!!!!!!!"
   post = Post.new	
   if !params[:body] 
    params[:body] = {} 
@@ -95,9 +94,8 @@ post "/upload" do
   post.title = params[:title]
   post.body = params[:body][:filename]
   if post.valid?
-  file ="#{params[:body][:tempfile].path}"
-
-      	  connect = Net::SSH.start("thelostideas.com", "mike", :password => "mike")
+    file ="#{params[:body][:tempfile].path}"
+    connect = Net::SSH.start("thelostideas.com", "mike", :password => "mike")
     connect.sftp.upload!(file, "/srv/www/codeandpen/codeandpen.com/public_html/uploads/#{params[:body][:filename]}")
     post.save
     redirect "/main"

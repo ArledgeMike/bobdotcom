@@ -8,7 +8,7 @@ require './environments'
 
 class Post < ActiveRecord::Base
   validates :title, presence: true
-
+  validates :body, presence: true
 end
 class User < ActiveRecord::Base
 end
@@ -87,24 +87,23 @@ post "/sign-up" do
 end
 
 post "/upload" do
-  post = Post.new
+	puts "#{params} !!!!!!!!!!!!!!!!"
+  post = Post.new	
+  if !params[:body] 
+   params[:body] = {} 
+  end
+  post.title = params[:title]
+  post.body = params[:body][:filename]
   if post.valid?
-    post[:title] = params[:title]
-    post[ :body] = params[:body][:filename]
-    file ="#{params[:body][:tempfile].path}"
-    connect = Net::SSH.start("thelostideas.com", "mike", :password => "mike")
+  file ="#{params[:body][:tempfile].path}"
+
+      	  connect = Net::SSH.start("thelostideas.com", "mike", :password => "mike")
     connect.sftp.upload!(file, "/srv/www/codeandpen/codeandpen.com/public_html/uploads/#{params[:body][:filename]}")
     post.save
     redirect "/main"
+  else
+    redirect "/main", :flash => post.errors.messages
   end
-  @errors = post.errors.messages
-  puts @errors
-  redirect "/main", :flash => @errors
-  #File.open("public/uploads/" + params[:body][:filename], "wb") do |f|
-  #f.write(params[:body][:tempfile].read)
-  #redirect "/main"
-  #end
-#  redirect "/main" 
 end
 
 get "/uploads/:name" do 

@@ -57,7 +57,7 @@ post "/login" do
   @user = User.find_by(username: params[:user])
   if @user and @user.password_hash == BCrypt::Engine.hash_secret(params[:pass], @user.password_salt)
     session[:username] = @user.username
-    session[:user_type] = "default"
+    session[:user_type] = @user.user_type
     redirect "/main"
   else
     redirect "/login", :flash => {:login_error => 'try again goon.'}      

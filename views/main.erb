@@ -4,6 +4,7 @@
 <a class="pull right" href="/"> &lt;----Main Site</a>
 
 <div id="messages">
+<% if flash %>      
   <p>You messed up goon you need a title and an image. <span>&marker;</span> </p>
 <% else %>
   <p>Hello <%= session[:username] %>, have you ideated lately?<span>&marker;</span> </p>

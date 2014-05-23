@@ -66,10 +66,12 @@ end
 
 get "/main" do
   login?
-  @post = Post.order "created_at DESC"
-  @user =  User.all
+  puts flash
   @page_id = "admin"
   @page_class ="main"
+  @post = Post.order "created_at DESC"
+  @user =  User.all
+  @current_user =  @user.find_by(username: session[:username])
   erb :main
 end
 

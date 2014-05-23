@@ -13,10 +13,10 @@
             <a href="http://www.codeandpen.com/uploads/<%= x.body %>"><%= x.title %></a>
           </td>
 	  <td class="right_column" > 
-	    <a href="/edit/<%= x.id %>" class="button" >Edit</a>
+	    <a href="/edit/<%= x.id %>" class="button small" >Edit</a>
     </td>
     <td class="right_column" >
-	    <a href="/delete/<%= x.id %>" class="button">Delete</a>
+	    <a href="/delete/<%= x.id %>" class="button small">Delete</a>
     </td>
         <% end %>
       </tr>	
@@ -36,7 +36,7 @@
 		 <tr>
 			 <td><%= x.first_name %> <%= x.last_name %> </td>
 			 <td class="right_column" >
-				 <a href="/user/edit/<%= x.id %>" class="button"  >Edit</a></td>
+				 <a href="/user/edit/<%= x.id %>" class="button small"  >Edit</a></td>
 		 </tr>
 	 <% end %>
  </tbody>

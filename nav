@@ -35,6 +35,23 @@ html#admin, html#edit{
 #admin #flash_messages{
   clear:right;
 }
+#admin #flash_messages p span {
+  position:relative;
+  top:6px;
+  font-size:30px;
+  animation: blink 1s steps(5, start) infinite;
+  -webkit-animation: blink 1s steps(5, start) infinite;
+  -moz-animation:blink 1s steps(5, start) infinite;
+}
+@keyframes blink {
+  to { visibility: hidden; }
+}
+@-moz-keyframes blink{
+  to { visibility: hidden; }
+}
+@-webkit-keyframes blink {
+  to { visibility: hidden; }
+}
 #admin hr{
   border: thin solid green;
 }
@@ -145,15 +162,14 @@ list-style-type:none;
   border:#242424 thin solid;
 }
 
-
 @media all and (max-width: 699px){
   #admin nav ul{
     list-style-type:none;  
-    float:right;  
-}
+  }
   #admin nav ul li{
-    margin-bottom:5px;
-    display:block;
+   display:inline-block;
+   width:100%;
+   float:right;   
   }
 
 }

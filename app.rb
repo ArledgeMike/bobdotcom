@@ -150,6 +150,11 @@ patch "/edit/user" do
   redirect "/main"
 end
 
+get "/delete/user/:id" do
+  User.find(params[:id]).delete
+  redirect "/main"
+end
+
 get "/logout" do
   session[:username] = nil
   session[:user_type] = nil

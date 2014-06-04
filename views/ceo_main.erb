@@ -28,8 +28,9 @@
 	<thead>
 	  <tr>
 	    <th width="50%">Full name</th>
-	    <th width="50%" class="right_column" >Edit</th>
-	 </tr>
+	    <th width="25%" class="right_column" >Edit</th>
+            <th width="25%" class="right_column">Delete</th>
+    </tr>
  </thead>
  <tbody>
 	 <% @user.each do |x| %>
@@ -37,6 +38,9 @@
 			 <td><%= x.first_name %> <%= x.last_name %> </td>
 			 <td class="right_column" >
 				 <a href="/user/edit/<%= x.id %>" class="button small"  >Edit</a></td>
+			 <td class="right_column">
+				 <a href="/delete/user/<%= x.id %>" class="button small" ></a>
+			 </td>
 		 </tr>
 	 <% end %>
  </tbody>

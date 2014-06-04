@@ -14,7 +14,7 @@
   <% end %>
 </div>
   
-<% if @current_user.company_title.empty? %>
+<% if @current_user.company_title == "" %>
   <p>looks like you should setup the rest of your profile goon.</p>
 <% else %>
   <div id="user_info">

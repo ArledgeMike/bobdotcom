@@ -50,7 +50,7 @@ end
 
 get "/" do
   login?
-  @post = Post.order "created_at DESC"
+  @post = Post.limit(10).order("created_at DESC")
   @page_id = "main"
   @page_class ="home"
   erb :index

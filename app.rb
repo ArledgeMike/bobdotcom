@@ -10,11 +10,11 @@ class Post < ActiveRecord::Base
   validates :title, presence: true
   validates :body, presence: true
 end
+
 class User < ActiveRecord::Base
 end
 
 enable :sessions
-
 
 helpers do
   

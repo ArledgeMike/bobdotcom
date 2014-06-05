@@ -4,7 +4,7 @@
   <div class="main_container">
 <% @post.each do |x| %>
 	<p>&lt; &lt;&lt;&lt;&lt;&lt;&lt; HEAD=======bdd9<%= x.title %>a5ba4fdca</p>
-	<a href="http://www.codeandpen.com/uploads/<%= x.body %>" target="_blank"><img src="http://www.codeandpen.com/uploads/<%= x.body %>" /></a>
+	<a href="<%= link_out x %>" target="_blank"><img src="<%= SITE_URL + x.body %>" /></a>
 <p> &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 17bbdd9a5ba4fd61da35eb26abbca4df8274bc0b</p>
   <% end %>
   </div>

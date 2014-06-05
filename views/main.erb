@@ -7,7 +7,6 @@
   </ul>
 </nav>
 
-
 <div id="flash_messages">
   <% if flash[:title] || flash[:body] %>      
     <p>You messed up goon you need a title and an image.</p>
@@ -30,6 +29,8 @@
   <input type="text" id="title" name="title"/> 
   <label>File:</label>
   <input type="file" id="body" name="body" />
+  <label>Link to: (can be left empty)</label>
+  <input type="text" id="post_link" name="post_link" />
   <input type="submit" class="button small" >
 </form>
 

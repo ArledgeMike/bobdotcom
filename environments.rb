@@ -2,7 +2,7 @@ SITE_URL = "http://www.codeandpen.com/uploads/"
 EMPLOYEE_TYPE = ["ceo", "art", "copy", "tech"]
 
 configure :development do
-	set :database, 'postgres://xrhebywahsgool:QeAKkl-KIh3UI5kLPbB51c9G5e@ec2-54-83-204-104.compute-1.amazonaws.com:5432/d5qgu2g7ch4grh'
+	set :database, 'postgres://postgres:psirus2050@localhost:5432/bobdotcom'
 	set :show_exceptions, true
 end
 
@@ -18,4 +18,3 @@ configure :production do
 		:encoding => 'utf8'
 	)
 end
-

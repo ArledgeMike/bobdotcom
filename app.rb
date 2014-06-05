@@ -10,6 +10,7 @@ class Post < ActiveRecord::Base
   validates :title, presence: true
   validates :body, presence: true
 end
+
 class User < ActiveRecord::Base
 end
 
@@ -25,6 +26,14 @@ helpers do
     else
        return true
     end
+  end
+
+  def link_out(post)
+   if post.post_link.nil?
+     "#{SITE_URL + post.body}"
+   else
+     "#{post.post_link}"	   
+   end 
   end
 
   def h(text)
@@ -66,7 +75,6 @@ end
 
 get "/main" do
   login?
-  puts flash
   @page_id = "admin"
   @page_class ="main"
   @post = Post.order "created_at DESC"
@@ -89,11 +97,14 @@ post "/sign-up" do
 end
 
 post "/upload" do
-  post = Post.new	
-  if !params[:body] 
-   params[:body] = {} 
-  end
+ puts "#{params}  !!!!!!!!!!!!!!!!!"
+       	post = Post.new	
+ # if !params[:body]  
+    params[:body] ||= {} 
+    params[:post_link] ||= "#{SITE_URL}" 
+ # end
   post.title = params[:title]
+  post.post_link = params[:post_link]
   post.body = params[:body][:filename]
   if post.valid?
     file ="#{params[:body][:tempfile].path}"

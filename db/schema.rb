@@ -28,11 +28,11 @@ ActiveRecord::Schema.define(version: 20140605165438) do
     t.string   "username"
     t.string   "first_name"
     t.string   "last_name"
+    t.string   "user_type"
     t.string   "password_salt"
     t.string   "password_hash"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "user_type"
     t.string   "company_title"
   end
 

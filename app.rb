@@ -49,7 +49,7 @@ end
 
 get "/" do
   login?
-  @post = Post.limit(10).order("created_at DESC")
+  @post = Post.limit(100).order("created_at DESC")
   @page_id = "main"
   @page_class ="home"
   erb :index
@@ -59,6 +59,12 @@ get "/login" do
   @page_id = "admin"
   @page_class ="login"
   erb :login
+end
+
+get "/more/:number"
+  
+ 
+
 end
 
 post "/login" do

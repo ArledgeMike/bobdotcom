@@ -61,7 +61,7 @@ get "/login" do
   erb :login
 end
 
-get "/more/:number"
+get "/more/:number" do
   
  
 

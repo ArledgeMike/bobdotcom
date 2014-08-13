@@ -48,7 +48,7 @@ helpers do
 end
 
 get "/" do
-  login?
+ # login?
   @post = Post.limit(100).order("created_at DESC")
   @page_id = "main"
   @page_class ="home"

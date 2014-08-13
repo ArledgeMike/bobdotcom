@@ -113,7 +113,7 @@ post "/upload" do
   post.body = params[:body][:filename]
   if post.valid?
     file ="#{params[:body][:tempfile].path}"
-    connect = Net::SSH.start("thelostideas.com", "mike", :password => "mike")
+    connect = Net::SSH.start("churchofbitcoin.org", "mike", :password => "mike123")
     connect.sftp.upload!(file, "/srv/www/codeandpen/codeandpen.com/public_html/uploads/#{params[:body][:filename]}")
     post.save
     redirect "/main"

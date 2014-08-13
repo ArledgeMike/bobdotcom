@@ -28,7 +28,7 @@ helpers do
   end
 
   def link_out(post)
-   if post.post_link.empty?
+   if post.post_link.nil?
      "#{SITE_URL + post.body}"
    else
      "#{post.post_link}"	   

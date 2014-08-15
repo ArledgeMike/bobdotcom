@@ -105,7 +105,7 @@ post "/upload" do
  puts "#{params}  !!!!!!!!!!!!!!!!!"
        	post = Post.new	
  # if !params[:body]  
-    params[:body] ||= {} 
+    params[:body] ||= "" 
     params[:post_link] ||= "#{SITE_URL}" 
  # end
   post.title = params[:title]

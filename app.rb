@@ -5,6 +5,8 @@ require 'sinatra/redirect_with_flash'
 require 'bcrypt'
 require 'net/sftp'
 require './environments'
+require './slack_bot'
+
 
 class Post < ActiveRecord::Base
   validates :title, presence: true
@@ -102,24 +104,24 @@ post "/sign-up" do
 end
 
 post "/upload" do
- puts "#{params}  !!!!!!!!!!!!!!!!!"
-       	post = Post.new	
- # if !params[:body]  
-    params[:body] ||= "" 
-    params[:post_link] ||= "#{SITE_URL}" 
- # end
+  post = Post.new	
+  params[:body] ||= "" 
+  params[:post_link] ||= "#{SITE_URL}" 
   post.title = params[:title]
   post.post_link = params[:post_link]
   post.body = params[:body][:filename]
+  
   if post.valid?
     file ="#{params[:body][:tempfile].path}"
     connect = Net::SSH.start("churchofbitcoin.org", "mike", :password => "mike123")
     connect.sftp.upload!(file, "/srv/www/codeandpen/codeandpen.com/public_html/uploads/#{params[:body][:filename]}")
     post.save
+    slack_post = Slack_Bot.new("#{session[:username]}", "#{post.title}")
     redirect "/main"
   else
     redirect "/main", :flash => post.errors.messages
   end
+
 end
 
 get "/uploads/:name" do 

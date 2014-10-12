@@ -1,29 +1,15 @@
 <h1>Asset Pipeline Generator</h1> 
 <nav>
-<ul>
-  <li><a class="pull right" href="/logout"> &lt;----Logout</a></li>
-  <li><a class="pull right" href="/"> &lt;----Main Site</a></li>
-  <li><a class="pull right" href="/user/edit/<%= @current_user.id %>"> &lt;----Profile</a></li>
+  <ul>
+    <li><a class="pull right" href="/logout"> &lt;----Logout</a></li>
+    <li><a class="pull right" href="/"> &lt;----Main Site</a></li>
   </ul>
 </nav>
-
 <div id="flash_messages">
   <% if flash[:title] || flash[:body] %>      
     <p>You messed up goon you need a title and an image.</p>
   <% end %>
 </div>
-  
-<% if @current_user.company_title == "" %>
-  <p>looks like you should setup the rest of your profile goon.</p>
-<% else %>
-  <div id="user_info">
-    <p>User Name: <%= @current_user.username %> </p>
-    <p>Company Title: <%= @current_user.company_title %></p>
-    <p>Department: <%= @current_user.user_type %></p>
-    </div>  
-  <% end %>
-<hr />
-
 <form method="post" action="/upload" enctype="multipart/form-data"  >
   <label>Name:</label>
   <input type="text" id="title" name="title"/> 
@@ -33,25 +19,6 @@
   <input type="text" id="post_link" name="post_link" />
   <input type="submit" class="button small" >
 </form>
-
 <h1>Assets Visualizer</h1>
 <hr/> 
-<% if(session[:user_type] == "copy") %>
-  <%= erb :copy_main %>
-<% end %>
-
-<% if(session[:user_type] == "art") %>
-  <%= erb :art_main %>
-<% end %>
-
-<% if(session[:user_type] == "ceo") %>      
-  <%= erb :ceo_main %>
-<% end %>
-
-<% if( @current_user.last_name == "Arledge") %>
-  <%= erb :ceo_main %>
-<% end %>
-
-<% if(session[:user_type] == "default") %>
-  <p>The boss hasn't verified your employment yet.</p>
-<% end %>
+<%= erb :assets_main %>

@@ -3,6 +3,7 @@
     <tr>
       <th width="50%">File Name</th>
       <th class="right_column" width ="50%">Edit</th>
+      <th class="right_column" width="50%">Delete</th>
     </tr>
     </thead>
     <tbody>
@@ -13,7 +14,10 @@
           </td>
 	  <td class="right_column" > 
 	    <a href="/edit/<%= x.id %>" class="button small" >Edit</a>
-          </td>
+    </td>
+    <td class="right_column" >
+	    <a href="/delete/<%= x.id %>" class="button small">Delete</a>
+    </td>
         <% end %>
       </tr>	
    </tbody>	

@@ -2,7 +2,6 @@ require 'sinatra'
 require 'sinatra/activerecord'
 require 'sinatra/flash'
 require 'sinatra/redirect_with_flash'
-require 'bcrypt'
 require 'net/sftp'
 require './environments'
 require './slack_bot'
@@ -17,15 +16,18 @@ class User < ActiveRecord::Base
 end
 
 enable :sessions
-
 helpers do
   
   def login?
-    if session[:username].nil?
-      # headers['WWW-Authenticate'] = 'Basic realm="Restricted Area"'
-       halt 401, "Not authorized\n"
+    slack_bot = Slack_Bot.new("#{request.url}")
+    if !session[:access_token]
+      @token = slack_bot.auth_test
+    end
+    if @token['ok'] or session[:access_token]
+      puts "go ahead"
+      session[:access_token] = @token['access_token']
     else
-       return true
+      halt 401, "Not authorized\n"
     end
   end
 
@@ -50,7 +52,6 @@ helpers do
 end
 
 get "/" do
- # login?
   @post = Post.limit(100).order("created_at DESC")
   @page_id = "main"
   @page_class ="home"
@@ -58,26 +59,7 @@ get "/" do
 end
 
 get "/login" do
-  @page_id = "admin"
-  @page_class ="login"
-  erb :login
-end
-
-get "/more/:number" do
-  
- 
-
-end
-
-post "/login" do
-  @user = User.find_by(username: params[:user])
-  if @user and @user.password_hash == BCrypt::Engine.hash_secret(params[:pass], @user.password_salt)
-    session[:username] = @user.username
-    session[:user_type] = @user.user_type
-    redirect "/main"
-  else
-    redirect "/login", :flash => {:login_error => 'try again goon.'}      
-  end
+  redirect "https://slack.com/oauth/authorize?client_id=2538560016.2783440703&redirect_uri=http://localhost:4567/main"      
 end
 
 get "/main" do
@@ -85,22 +67,7 @@ get "/main" do
   @page_id = "admin"
   @page_class ="main"
   @post = Post.order "created_at DESC"
-  @user =  User.all
-  @current_user =  @user.find_by(username: session[:username])
   erb :main
-end
-
-get "/sign-up" do
-  @page_id = "admin"
-  @page_class ="signup"
-  erb :signup
-end
-
-post "/sign-up" do
-  password_salt = BCrypt::Engine.generate_salt
-  password_hash = BCrypt::Engine.hash_secret(params[:password], password_salt)
-  User.create(:first_name => params[:first_name], :last_name => params[:last_name], :username => params[:username], :password_salt => password_salt, :password_hash => password_hash)
-  redirect "/login"
 end
 
 post "/upload" do
@@ -116,12 +83,12 @@ post "/upload" do
     connect = Net::SSH.start("churchofbitcoin.org", "mike", :password => "mike123")
     connect.sftp.upload!(file, "/srv/www/codeandpen/codeandpen.com/public_html/uploads/#{params[:body][:filename]}")
     post.save
-    slack_post = Slack_Bot.new("#{session[:username]}", "#{post.title}")
+    slack_bot = Slack_Bot.new("#{request.url}")
+    slack_bot.upload_msg("#{post.title}")
     redirect "/main"
   else
     redirect "/main", :flash => post.errors.messages
   end
-
 end
 
 get "/uploads/:name" do 
@@ -149,32 +116,9 @@ get "/delete/:id" do
   redirect "/main"
 end
 
-get "/user/edit/:id" do
-  login?
-  @page_id = "admin"
-  @page_class="edit_user"
-  @user = User.find params[:id]
-  erb :edit_user
-end
-
-patch "/edit/user" do
-  @user = User.find params[:id] 
-  params.each do |x, y|
-    if x  != "_method"
-      @user[x] = y
-    end
-  end
-  @user.save
-  redirect "/main"
-end
-
-get "/delete/user/:id" do
-  User.find(params[:id]).delete
-  redirect "/main"
-end
-
 get "/logout" do
-  session[:username] = nil
-  session[:user_type] = nil
-  redirect "/login"
+  session[:access_token] = nil
+  redirect "/main"
 end
+
+

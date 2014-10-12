@@ -1,5 +1,8 @@
+
+
 SITE_URL = "http://www.codeandpen.com/uploads/"
 EMPLOYEE_TYPE = ["ceo", "art", "copy", "tech"]
+
 
 configure :development do
 	set :database, 'postgres://postgres:psirus2050@localhost:5432/bobdotcom'

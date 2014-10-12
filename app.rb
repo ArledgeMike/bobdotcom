@@ -83,7 +83,7 @@ post "/upload" do
     connect = Net::SSH.start("churchofbitcoin.org", "mike", :password => "mike123")
     connect.sftp.upload!(file, "/srv/www/codeandpen/codeandpen.com/public_html/uploads/#{params[:body][:filename]}")
     post.save
-    slack_bot = Slack_Bot.new("#{request.url}")
+    slack_bot = Slack_Bot.new("#{SITE_URL}")
     slack_bot.upload_msg("#{post.title}")
     redirect "/main"
   else

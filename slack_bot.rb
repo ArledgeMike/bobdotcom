@@ -5,7 +5,7 @@ require 'json'
 
 class Slack_Bot
   
-  def initialize(current_url)
+  def initialize(current_url= "")
     @current_url = current_url
     @base_url = "https://slack.com/api/"
     @slack_params = Rack::Utils.parse_query URI(@current_url).query
@@ -20,7 +20,7 @@ class Slack_Bot
   def upload_msg(image_title="default image title")
     title = image_title
     method = "chat.postMessage"
-    params =  { :token => "xoxp-2538560016-2543438978-2768701902-c864db", :username => "011001100111010101100011011010110110001001100101011000010110111001110011", :channel => "C02NTNN8E", :icon_url => "http://codeandpen.com/uploads/slack_bot.png", :text => "An ideation titled: #{@title}\n has been added to www.bobdotbiz.com"  }
+    params =  { :token => "xoxp-2538560016-2543438978-2768701902-c864db", :username => "011001100111010101100011011010110110001001100101011000010110111001110011", :channel => "C02NTNN8E", :icon_url => "http://codeandpen.com/uploads/slack_bot.png", :text => "An ideation titled: #{title}\n has been added to www.bobdotbiz.com"  }
     url = URI("#{@base_url + method}")
     url.query = URI.encode_www_form(params)
     res = Net::HTTP.get(url)

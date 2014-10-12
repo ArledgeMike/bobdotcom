@@ -59,7 +59,7 @@ get "/" do
 end
 
 get "/login" do
-  redirect "https://slack.com/oauth/authorize?client_id=2538560016.2783440703&redirect_uri=http://localhost:4567/main"      
+  redirect "https://slack.com/oauth/authorize?client_id=2538560016.2783440703&redirect_uri=http://www.bobdotbiz.com/main"      
 end
 
 get "/main" do

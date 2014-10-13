@@ -6,7 +6,6 @@ require 'net/sftp'
 require './environments'
 require './slack_bot'
 
-
 class Post < ActiveRecord::Base
   validates :title, presence: true
   validates :body, presence: true
@@ -16,27 +15,21 @@ class User < ActiveRecord::Base
 end
 
 enable :sessions
+
 helpers do
   
   def login?
-    slack_bot = Slack_Bot.new("#{request.url}")
     if !session[:access_token]
-      @token = slack_bot.auth_test
-    end
-    if @token['ok'] or session[:access_token]
-      puts "go ahead"
-      session[:access_token] = @token['access_token']
-    else
       halt 401, "Not authorized\n"
     end
   end
 
   def link_out(post)
-   if post.post_link.empty?
-     "#{SITE_URL + post.body}"
-   else
-     "#{post.post_link}"	   
-   end 
+    if post.post_link.empty?
+      "#{SITE_URL + post.body}"
+    else
+      "#{post.post_link}"	   
+    end 
   end
 
   def h(text)
@@ -59,7 +52,15 @@ get "/" do
 end
 
 get "/login" do
-  redirect "https://slack.com/oauth/authorize?client_id=2538560016.2783440703&redirect_uri=http://www.bobdotbiz.com/main"      
+  redirect "https://slack.com/oauth/authorize?client_id=2538560016.2783440703&redirect_uri=http://localhost:4567/auth"      
+end
+
+get "/auth" do 
+  session_code = request.env['rack.request.query_hash']['code']
+  slack_bot = Slack_Bot.new
+  token = slack_bot.make_hand_shake session_code
+  session[:access_token] = token['access_token']
+  redirect "/main"
 end
 
 get "/main" do
@@ -118,7 +119,7 @@ end
 
 get "/logout" do
   session[:access_token] = nil
-  redirect "/main"
+  redirect "/"
 end
 
 

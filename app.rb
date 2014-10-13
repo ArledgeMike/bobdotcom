@@ -4,6 +4,8 @@ require 'sinatra/flash'
 require 'sinatra/redirect_with_flash'
 require 'net/sftp'
 require './environments'
+require 'will_paginate'
+require 'will_paginate/active_record'
 require './slack_bot'
 
 class Post < ActiveRecord::Base
@@ -45,10 +47,11 @@ helpers do
 end
 
 get "/" do
-  @post = Post.limit(100).order("created_at DESC")
+#@post = Post.limit(15).order("created_at DESC")
+ @post = Post.paginate(:page => params[:page], :per_page => 10)
   @page_id = "main"
   @page_class ="home"
-  erb :index
+  erb :index, :layout => :main_page
 end
 
 get "/login" do

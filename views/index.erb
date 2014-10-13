@@ -1,12 +1,21 @@
 <h1>Bobdotcom.biz<small> - version 1.0.5.9101112</small></h1>
-<a href="http://twitter.com/bobdotcomdotbiz">︻╦╤─ QUALITY RT'S |</a><a href="javascript:var%20s%20=%20document.createElement('script');s.type='text/javascript';document.body.appendChild(s);s.src='/js/asteroids.js';void(0);"> Hide Evidence</a>  
+<div class="offerings">
+<a href="http://twitter.com/bobdotcomdotbiz">︻╦╤─ QUALITY RT'S <strong>|</strong> </a><a href="https://www.facebook.com/StookiSound/app_14167664298">Branding and Identity Offering <strong>|</strong> </a><a href="http://codeandpen.com/takeabreath">Music Offering <strong>|</strong> </a><a href="https://www.youtube.com/watch?v=r_fNw8Dafk8&list=UU63v8Ja7YN-R3yBUrUXUqTQ">Video offerings | </a><a href="javascript:var%20s%20=%20document.createElement('script');s.type='text/javascript';document.body.appendChild(s);s.src='/js/asteroids.js';void(0);"> Hide Evidence</a>  
 <hr />
+</div>
 <div class="main_container">
+  
+
   <% @post.each do |x| %>
-    <p>&lt; &lt;&lt;&lt;&lt;&lt;&lt; HEAD=======bdd9<%= x.title %>a5ba4fdca</p>
+  <div class="item">
+    <p>&lt;== <%= x.title %>==&gt;</p>
  	<a href="<%= link_out x %>" target="_blank">
 	  <img src="<%= SITE_URL + x.body %>" />
     </a>
-    <p> &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 17bbdd9a5ba4fd61da35eb26abbca4df8274bc0b</p>
-  <% end %>
-</div>
+  </div>
+    <% end %>
+
+
+  </div>
+
+<%= will_paginate @post %>

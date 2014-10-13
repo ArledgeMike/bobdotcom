@@ -15,8 +15,6 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     arel (5.0.1.20140414130214)
-    bcrypt (3.1.7)
-    bcrypt (3.1.7-x86-mingw32)
     builder (3.2.2)
     i18n (0.6.9)
     json (1.8.1)
@@ -46,6 +44,7 @@ GEM
     tilt (1.4.1)
     tzinfo (1.1.0)
       thread_safe (~> 0.1)
+    will_paginate (3.0.7)
 
 PLATFORMS
   ruby
@@ -53,7 +52,6 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord
-  bcrypt
   net-sftp
   pg
   sinatra
@@ -61,3 +59,4 @@ DEPENDENCIES
   sinatra-flash
   sinatra-redirect-with-flash
   sqlite3
+  will_paginate (~> 3.0)

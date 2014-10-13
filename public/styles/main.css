@@ -10,6 +10,13 @@ html#admin, html#edit{
   width:95%;
   margin:auto;
 }
+.main_container{
+  padding:20px;
+  margin:auto;
+  width:75%;
+  max-width:640px;
+  white-space:pre-wrap;
+}
 #admin label, #edit label{
   color:green;
 }
@@ -54,19 +61,6 @@ display:inline-block;
 #admin #full_container form a.cancel.button:hover{
   background:green;
   color:black;
-}
-.main_container{
-  padding:20px;
-  margin:auto;
-  width:75%;
-  max-width:640px;
-  white-space:pre-wrap;
-}
-#main .main_container a{
-	display:block;
-}
-#main .main_container a:hover{
-	border-bottom:none;
 }
 table{
   width:100%;
@@ -113,37 +107,7 @@ list-style-type:none;
   width:85%
 }
 
-#main{
-  background: url(/images/bground.jpg) repeat;
-  color:#242424;
-}
-#main h1{
-  color:#242424;
-  margin-bottom:15px;
-}
-#main p{
-  color:#242424;
-  margin-bottom: 0px;
-  word-break: break-all;
-}
-#main a{
-  color:#242424;
-}
-#main a.twitter{
-  margin-top:10px;
-}
-.main_container img{
-  margin:0px 0px 10px 0px;
-  width:auto;
-  height:auto;
-}
-#main a:hover{
-  color:black;
-  border-bottom:3px dashed black;
-}
-#main hr{
-  border:#242424 thin solid;
-}
+
 
 
 @media all and (max-width: 699px){

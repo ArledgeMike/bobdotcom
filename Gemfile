@@ -7,6 +7,7 @@ gem 'sinatra-activerecord'
 gem 'sinatra-flash'
 gem 'sinatra-redirect-with-flash'
 gem 'net-sftp'
+gem 'will_paginate', '~> 3.0'
 
 group :development do
  gem 'sqlite3'

@@ -60,7 +60,7 @@
   font-size:19px;
 }
 
-@media all and (max-width: 560px){
+@media all and (max-width: 650px){
   #main .main_container {
     padding: 0px;
 

@@ -48,7 +48,7 @@ end
 
 get "/" do
 #@post = Post.limit(15).order("created_at DESC")
- @post = Post.paginate(:page => params[:page], :per_page => 10)
+ @post = Post.paginate(:page => params[:page], :per_page => 20).order("created_at DESC")
   @page_id = "main"
   @page_class ="home"
   erb :index, :layout => :main_page

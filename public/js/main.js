@@ -9,6 +9,7 @@ $(document).ready(function(){
             columnWidth: 120,
             itemSelector: '.item'
         });
+		$('#main #loader').fadeOut();
 
     });
 });
